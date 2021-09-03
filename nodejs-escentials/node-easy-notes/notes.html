@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Notas call</title>
+
+</head>
+
+<body>
+
+    <button id="search" onclick=VerNotas()>Ver notas</button>
+    <div>
+        Titulo <input type="text" id="newTitle"/> 
+        Contenido <input type="text" id="newContent"/> 
+    </div>
+    <button id="addNote" onclick = NuevaNota()>Agregar nota</button>
+
+    <h1>Lista de notas</h1>
+    <ol id ="notasLista"></ol>
+    <script>
+        // Mostrar todas las notas
+        function VerNotas() {
+            fetch(`http://localhost:3000/notes`)
+            .then(response => {
+                if (!response.ok) throw Error(response.status);
+                return response.json(); //ocupa el rtrn for 2 lines or more
+            })
+            .then(json =>console.log(json))
+            .catch(error => console.log(error));
+        }
+
+        // class Nota{
+        //     constructor(titulo, contenido){
+        //         this.titulo = titulo;
+        //         this.contenido = contenido;
+        //     }
+        // }
+        
+        function NuevaNota() {
+        let titulo = document.getElementById("newTitle");
+        let contenido= document.getElementById("newContent");
+        //var nuevaNota = new Nota(titulo, contenido);
+            fetch('http://localhost:3000/notes', {
+                method: 'POST',
+                body: JSON.stringify({
+                    title: titulo.value,
+                    content: contenido.value
+                }),
+                headers: {
+                    "Content-type": "application/json"
+                }
+            })
+            .then(response => response.json())
+            .then(json => console.log(json))
+            .finally(function(){
+                Imprimir();
+            });
+        }
+        function Imprimir(){
+            fetch('http://localhost:3000/notes')
+            .then(response => response.json())
+            .then(notas => {
+                notas.forEach(nota => {
+                    let nuevaNota = document.createElement("li");
+                    nuevaNota.innerHTML = nota.title + ": " + nota.content;
+                    notasLista.appendChild(nuevaNota);
+                });
+            })
+        }
+    </script>
+</body>
+
+</html>

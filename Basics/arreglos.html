@@ -1,0 +1,57 @@
+<!doctype html>
+<head>
+    <title>Animales</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <h1>Animales</h1>
+    <button onclick= "AddToAnimal()">Agregar animal</button>
+    <button onclick= "ViewList()">Ver lista</button>
+
+    <ol id ="animals">
+    </ol>
+
+    <script>
+        var animals =[];
+        var animalsList = document.getElementById("animals");
+
+        // add animal then display the list
+        function AddToAnimal(){
+            var newAnimal = window.prompt("Agrega animal");
+            animals.push(newAnimal);
+            ViewList();
+
+        }
+        
+        // building the list from zero and defining the button delete
+        function ViewList()
+        {
+            while(animalsList.firstChild!=null)
+                animalsList.removeChild(animalsList.firstChild);
+            console.log(animals);
+            animals.forEach(function(animal)
+            {
+                let newAnimal = document.createElement("li");
+                newAnimal.innerText = animal;
+                let numAnimals = animals.length;
+
+                let newButton = document.createElement("button");
+                newAnimal.innerHTML = `${animal} <input id="li${numAnimals}" type="button" class="delete" value = "Delete" onclick="DeleteItem(this);" />`
+                animalsList.appendChild(newAnimal);
+                
+            })
+        }
+        // Delete an animal function
+        function DeleteItem(){
+            this.animalsList.remove();
+        }
+        // Selecting all delete buttons to search for the 'one' wtih an Event Listener
+        let delButtons = document.querySelectorAll('.delete');
+        buttons.forEach(button =>{
+            button.addEventListener('click', DeleteItem);
+        });
+    </script>
+</body>
+</html>

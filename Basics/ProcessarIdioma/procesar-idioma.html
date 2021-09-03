@@ -1,0 +1,46 @@
+<!--add 2 btn radio circulares ingles espanol input type ratiio
+aadd un boton send message
+Delegar asignar dinamicamente el llamado a una funcion saludo correspondiente al idioma seleccionado
+Hola usuario, o heelo user-->
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <div>
+    <input type="radio" id="lang" name="lang" onclick = "selectLanguage(this)" value = "eng"><span>English</span>
+    <input type="radio" id="lang" name="lang" onclick = "selectLanguage(this)" value = "spa"><span>Spanish</span>
+    </div>
+    <button id = "msg" >Send message</button>
+
+    <script>
+        let choseEvent = englishGreeting;
+        //choseEvent.addEventListener("click", selectLanguage());
+
+        function selectLanguage(langButton){
+            let msgButton = document.getElementById("msg")
+            msgButton.removeEventListener("click", choseEvent);
+            if (langButton.value=="eng")
+                choseEvent = englishGreeting;
+            else if (langButton.value == "spa")
+                choseEvent = spanishGreeting;
+            msgButton.addEventListener("click", choseEvent);
+        }
+
+        var spanishGreeting = function (){
+            alert("Hola Usuario");
+        }
+
+        var englishGreeting = function(){
+            alert("Hello User");
+
+        }
+
+
+    </script>
+</body>
+
+</html>

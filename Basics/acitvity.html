@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>To-Do List</title>
+    <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|Bowlby+One+SC" rel="stylesheet">
+    <style>
+        body {
+            background-color: rgb(37, 37, 37);
+            color: rgb(216, 203, 203);
+            padding: 2rem;
+            margin: 0;
+            font-family: 'Architects Daughter', cursive;
+            font-size: 12px;
+        }
+
+        h1 {
+            font-family: 'Bowlby One SC', cursive;
+            font-size: 2.8rem;
+            color: cornflowerblue;
+            margin: 0;
+        }
+
+        ol {
+            font-family: 'Architects Daughter', cursive;
+            font-size: 1.6rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>To-Do List</h1>
+    <ol id ="list">
+        <li>Wash Laundry</li>
+        <li>Clean Silver</li>
+        <li>Write Letters</li>
+        <li>Purchase Groceries</li>
+        <li>Retrieve Mail</li>
+        <li>Prepare Dinner</li>
+    </ol>
+    <script>
+        /*Agregar un elemento y cambiarle de color*/
+        var toDoList = document.getElementById("list");
+        var numItems = toDoList.children.length;
+        var item = document.getElementsByTagName("li");
+        
+        // Aqui se cuentan los taskts y se agrega un nuevo elemento
+        // console.log(numItems);
+        // var newTask = document.createElement('li');
+        // newTask.innerText = "New task";
+        // toDoList.appendChild(newTask);
+        // toDoList.lastChild.style.color = "red";
+        // numItems = toDoList.children.length;
+        // console.log(numItems);
+
+        /*Cambiar de color nones y pares*/
+        for( let i =0; i<numItems; i+=2)
+        {
+            item[i].style.color = "red";
+            console.log(item[i].style.color);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript Execution Order</title>
+    <script>console.log('Within the HEAD');</script>
+</head>
+
+<body>
+    <div id= "grupoBotones">
+        <button Id ="btn1" class = "Odd">Boton 1</button>
+        <button Id ="btn2">Boton 2</button>
+        <button Id ="btn3" class = "Odd">Boton 3</button>
+    
+    </div>
+
+    
+    <script>
+        console.log(document.children);
+
+        buttons = document.getElementsByTagName('button');
+        console.log(buttons);
+
+        botonesNones = document.getElementsByClassName("Odd");
+        console.log(gruupoBotones);
+
+        nonesButtons = document.getEleemntsByClassName("Odd");
+        console.log(nonesButtons);
+
+        for(button of nonesButtons){
+            button.style.color = "red";
+        }
+
+        let groupButtons = document.getElementByid('grupoBotones')
+        let newButton = document.createElement('button');
+        newButton.innerText = "Boton 4"; 
+        newButton.setAtrribute("id", "btn4");
+        groupButtons.appendChild(newButton);
+
+        boton1=  document.getElementById('btn1');
+        boton1.addEventListener('click', function(){
+            alert('click button 1');
+        })
+    </script>
+</body>
+
+</html>

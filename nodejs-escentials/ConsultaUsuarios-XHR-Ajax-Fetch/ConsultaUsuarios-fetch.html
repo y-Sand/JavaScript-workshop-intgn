@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Fetch call</title>
+</head>
+
+<body>
+    <input type ="text" id="Id"/>Id del usuario<br>
+    <button id = "search" onclick = buscarUsuario()>Buscar</button>
+    <div>
+        Nombre: <input type = "text" id = "textName" readonly/>
+        Email: <input type = "text" id = "textEmail" readonly/>
+    </div>
+    <script>
+        function buscarUsuario(){
+            let Id = document.getElementById("Id").value;
+            let textName = document.getElementById("textName");
+            let textEmail = document.getElementById("textEmail");
+
+            fetch(`https://jsonplaceholder.typicode.com/users/${Id}`)
+            .then(response => {
+                if(!response.ok) throw Error(response.status);
+                return response.json(); //ocupa el rtrn for 2 lines or more
+            })
+            .then(json => {
+                textName.value = json.name;
+                textEmail.value = json.email;
+            })
+            .catch(error => console.log(error));
+        }
+    </script>
+</body>
+
+</html>

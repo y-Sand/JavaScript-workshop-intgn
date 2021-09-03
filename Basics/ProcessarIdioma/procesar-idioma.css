@@ -1,0 +1,8 @@
+.radio-button {
+    cursor: pointer;
+    padding-right: 25px;
+  }
+  input[type=radio] {
+      box-sizing: border-box;
+      padding: 0;
+  }
